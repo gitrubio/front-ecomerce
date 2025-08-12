@@ -16,11 +16,12 @@ import { Card, CardContent } from "./ui/card";
 import { Expand, ShoppingCart } from "lucide-react";
 import IconButton from "./icon-button";
 import { useRouter } from "next/navigation";
+import { useCart } from "@/hooks/use-cart";
 
 export default function FeaturedProducts() {
   const { result, loading }: ResponseType = useGetFeaturedProducts();
   const router = useRouter();
-
+  const {addItem} = useCart();
   return (
     <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-24">
       <h3 className="px-6 text-3xl sm:pb-8">Productos destacados</h3>
@@ -67,7 +68,7 @@ export default function FeaturedProducts() {
                             <IconButton
                               icon={<ShoppingCart />}
                               className="text-gray-600"
-                              onClick={() => console.log("add item")}
+                              onClick={() => addItem(item)}
                             />
                           </div>
                         </div>
