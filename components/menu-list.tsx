@@ -15,19 +15,19 @@ import {
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Decoración / Hogar",
-    href: "/store/decoracion-hogar",
+    href: "/store?category=decoracion-hogar",
     description:
       "Macetas, portavelas, organizadores, lámparas, bases para luces LED, marcos, esculturas y adornos modernos.",
   },
   {
     title: "Accesorios Personalizados",
-    href: "/store/accesorios-personalizados",
+    href: "/store?category=accesorios-personalizados",
     description:
       "Llaveros, nombres decorativos, bisutería, fundas para dispositivos, soportes, porta tarjetas, ganchos y colgantes.",
   },
   {
     title: "Juguetes / Figuras",
-    href: "/store/juguetes-figuras",
+    href: "/store?category=juguetes-figuras",
     description:
       "Personajes de videojuegos, películas, anime, rompecabezas, juegos de mesa, piezas de colección, modelos articulados, dragones y robots.",
   },

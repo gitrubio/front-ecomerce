@@ -19,7 +19,7 @@ export default function ChooseCategory() {
           result.map((item: CategoryType) => (
             <Link
               key={item.id}
-              href={`/store/${item.slug}`}
+              href={`/store?category=${item.slug}`}
               className="relative max-w-xs mx-auto overflow-hidden bg-no-repeat bg-cover rounded-lg h-82"
             >
               <img
