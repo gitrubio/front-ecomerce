@@ -11,7 +11,7 @@ import { ProductType } from "@/types/product";
 
 export default function Page() {
   const params = useSearchParams();
-  const category = params.get("category") || "all";
+  const category = params.get("category") || "todos";
   const { result, loading, error } = useGetProducts();
   const [filterOrigin, setFilterOrigin] = useState(category);
 

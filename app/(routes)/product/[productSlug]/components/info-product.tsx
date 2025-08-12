@@ -14,7 +14,7 @@ export type InfoProductProps = {
 const InfoProduct = (props: InfoProductProps) => {
   const { product } = props;
   const { addItem } = useCart();
-  const { addLoveItem } = useLovedProducts();
+  const { addLoveItem , lovedItems } = useLovedProducts();
 
   return (
     <div className="px-6">
@@ -30,15 +30,15 @@ const InfoProduct = (props: InfoProductProps) => {
       <p>{product.description}</p>
       <Separator className="my-4" />
       <p className="my-4 text-2xl">{formatPrice(product?.price)}</p>
-      <div className="flex items-center justify-between gap-5">
-        <Button className="w-full" onClick={() => addItem(product)}>
+      <div className="flex items-center gap-5 ">
+        <Button className="sm:w-70 w-90" onClick={() => addItem(product)}>
           Comprar{" "}
         </Button>
         <Heart
          key={product.id}
-          width={300}
+          width={30}
           strokeWidth={1}
-          className="transition duration-300 cursor-pointer hover:fill-black"
+          className={`cursor-pointer hover:fill-black  ${lovedItems.some(item => item.id === product.id) ? 'fill-black' : ''}`}
           onClick={() => addLoveItem(product)}
         />
       </div>

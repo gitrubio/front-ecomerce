@@ -17,11 +17,19 @@ export default function Page() {
   );
 
   const buyStripe = async () => {
-    removeAll();
     try {
       const stripe = await stripePromise;
       const res = await makePaymentRequest.post("/api/orders", {
-        products: items,
+        data: {
+          products: {
+            connect: items.map((item) => ({ id: item.id })), // IDs existentes
+          },
+          orderStatus: "order",
+          emailCustomer: "carloviloria0@gmail.com",
+          AddressCustomer: "cr 12#23A-45",
+          NameCustomer: "Carlos Rubio",
+          total: items.map((item) => item.price).reduce((a, b) => a + b, 0),
+        },
       });
       await stripe?.redirectToCheckout({
         sessionId: res.data.stripeSession.id,
