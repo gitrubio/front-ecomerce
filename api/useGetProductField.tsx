@@ -1,0 +1,36 @@
+import { CategoryType } from '../types/product';
+
+import{ useEffect, useState } from 'react'
+
+export default function useGetProductField() {
+   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/categories?populate=*`;
+    const [result, setResult] = useState<null | CategoryType[]>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const json = await response.json();
+                setResult([ {categoryName: 'Todos', id: 'todos', slug: 'todos'},...json.data] as CategoryType[]);
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError("An unknown error occurred");
+                }
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [url]);
+
+    return { result, loading, error };
+}
