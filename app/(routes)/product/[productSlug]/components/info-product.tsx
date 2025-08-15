@@ -5,7 +5,7 @@ import { useCart } from "@/hooks/use-cart";
 import { useLovedProducts } from "@/hooks/use-loved-products";
 import { formatPrice } from "@/lib/formatPrice";
 import { ProductType } from "@/types/product";
-import { Heart } from "lucide-react";
+import { Heart, ShoppingCart } from "lucide-react";
 
 export type InfoProductProps = {
   product: ProductType;
@@ -30,9 +30,15 @@ const InfoProduct = (props: InfoProductProps) => {
       <p>{product.description}</p>
       <Separator className="my-4" />
       <p className="my-4 text-2xl">{formatPrice(product?.price)}</p>
-      <div className="flex items-center gap-5 ">
-        <Button className="sm:w-70 w-90" onClick={() => addItem(product)}>
+      <div className="flex items-center gap-5 mb-2">
+        <Button className="sm:w-70 w-90 cursor-pointer" variant={"outline"} onClick={() => addItem(product)}>
           Comprar{" "}
+        </Button>
+        
+      </div>
+      <div className="flex items-center gap-5">
+        <Button className="sm:w-70 w-90 cursor-pointer" onClick={() => addItem(product)}>
+          {'Agregar al carrito'} <ShoppingCart/>
         </Button>
         <Heart
          key={product.id}

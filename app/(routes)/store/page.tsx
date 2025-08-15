@@ -8,36 +8,55 @@ import SkeletonSchema from "@/components/skeleton-schema";
 import ProductCard from "./components/product-card";
 import { useState } from "react";
 import { ProductType } from "@/types/product";
+import { SearchBar } from "./components/product-search";
 
 export default function Page() {
   const params = useSearchParams();
   const category = params.get("category") || "todos";
   const { result, loading, error } = useGetProducts();
   const [filterOrigin, setFilterOrigin] = useState(category);
+  const [search, setSearch] = useState("");
+
+  const handleFilterChange = (newFilter: string) => {
+    setFilterOrigin(newFilter);
+    // Optionally, you can also refetch products or apply additional logic here
+  };
+
+  const handleSearch = (query: string) => {
+    setFilterOrigin('todos')
+    setSearch(query);
+  };
 
   const filteredProducts =
     !loading && Array.isArray(result)
-      ? filterOrigin === "todos"
-        ? result
-        : result.filter(
-            (product: ProductType) => product?.category?.slug === filterOrigin
+      ? result
+          .filter((product: ProductType) =>
+            filterOrigin === "todos"
+              ? true
+              : product?.category?.slug === filterOrigin
+          )
+          .filter((product: ProductType) =>
+            search.trim() === ""
+              ? true
+              : product?.productName
+                  ?.toLowerCase()
+                  .includes(search.toLowerCase())
           )
       : [];
 
-      const handleFilterChange = (newFilter: string) => {
-        setFilterOrigin(newFilter);
-        // Optionally, you can also refetch products or apply additional logic here
-      }
-    
   return (
     <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-24">
-      <h1 className="font-bold text-3xl">
-        Productos
-       
-      </h1>
+      <div className="flex items-center justify-between">
+        <h1 className="font-bold text-3xl mb-3">Productos</h1>
+
+        <SearchBar key={"search"} onSearch={handleSearch} />
+      </div>
       <Separator />
       <div className="sm:flex sm:justify-between ">
-        <FiltersControlsCategory slug={filterOrigin} handleFilterChange={handleFilterChange}/>
+        <FiltersControlsCategory
+          slug={filterOrigin}
+          handleFilterChange={handleFilterChange}
+        />
 
         <div className="grid gap-5 mt-8 sm:grid-cols-2 md:grid-cols-3 md:gap-10">
           {loading && <SkeletonSchema grid={3} />}
@@ -46,11 +65,9 @@ export default function Page() {
             filteredProducts.map((item) => (
               <ProductCard key={item.id} product={item} />
             ))}
-          {
-            !loading &&
-            filteredProducts.length === 0 && (
-              <p>No hay productos con este filtro.</p>
-            )}
+          {!loading && filteredProducts.length === 0 && (
+            <p>No hay productos con este filtro.</p>
+          )}
         </div>
       </div>
     </div>

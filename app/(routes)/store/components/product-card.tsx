@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import { Expand, ShoppingCart } from "lucide-react";
+import { Bold, BotIcon, Expand, Home, Shapes, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 import { formatPrice } from "@/lib/formatPrice";
 import { ProductType } from "@/types/product";
+
 
 import IconButton from "@/components/icon-button";
 import {
@@ -12,10 +13,27 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 type ProductCardProps = {
   product: ProductType;
 };
+
+
+
+
+const CategoryIcon = (category: string) => {
+  switch (category) {
+    case "Accesorios Personalizados":
+      return <BotIcon/>;
+    case "Decoracion / Hogar":
+      return <Home/>;
+    case "Juguetes / Figuras":
+      return <Shapes/>
+    default:
+      return "";
+  }
+}
 
 const ProductCard = (props: ProductCardProps) => {
   const { product } = props;
@@ -24,15 +42,22 @@ const ProductCard = (props: ProductCardProps) => {
   return (
     <Link
       href={`/product/${product.slug}`}
-      className="relative p-2 transition-all duration-100 rounded-lg hover:shadow-md "
+      className="relative p-2 transition-all duration-100 rounded-lg hover:shadow-md h-60"
     >
-     { product.category && <div className="absolute flex items-center justify-between gap-3 px-2 z-[1] top-4">
+     { product.category && 
+     <div className="absolute flex items-center justify-between gap-3 px-1 z-[1] top-1 right-1 ">
     
         <p
-          className="px-2 py-1 text-xs text-white bg-yellow-900 rounded-full
-                 w-fit"
+          className={`text-xs font-semibold text-white px-2 py-1 rounded-lg bg-gray-500`}
         >
-          {product.category.categoryName}
+          <Tooltip>
+            <TooltipTrigger>
+              {CategoryIcon(product.category.categoryName)}
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{product.category.categoryName}</p>
+            </TooltipContent>
+          </Tooltip>
         </p>
       </div>}
       <Carousel

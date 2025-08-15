@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function useGetCategories() {
     const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/categories?populate=*`;
-    const [result, setResult] = useState(null)
+    const [result, setResult] = useState([])
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
