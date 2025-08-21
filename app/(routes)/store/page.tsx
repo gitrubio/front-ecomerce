@@ -9,9 +9,14 @@ import { useState } from "react";
 import { ProductType } from "@/types/product";
 import { SearchBar } from "./components/product-search";
 
-export default function Page({ searchParams }: { readonly searchParams: { [key: string]: string | string[] | undefined } }) {
+interface StorePageProps {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+
+export default function Page({ searchParams }: StorePageProps) {
   
-  const category = searchParams.category|| "todos";
+  const category = searchParams?.category|| "todos";
   const { result, loading, error } = useGetProducts();
   const [filterOrigin, setFilterOrigin] = useState(category);
   const [search, setSearch] = useState("");
