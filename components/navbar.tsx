@@ -5,6 +5,7 @@ import MenuList from './menu-list';
 import ItemsMenuMobile from './items-menu-mobile';
 import ToggleTheme from './toggle-theme';
 import { useCart } from '@/hooks/use-cart';
+import Link from 'next/link';
 
 export default function Navbar() {
     const cart = useCart();
@@ -12,9 +13,9 @@ export default function Navbar() {
 
   return (
     <div className="flex items-center justify-between p-4 mx-auto cursor-pointer sm:max-w-4xl md:max-w-6xl m-0 ">
-        <h1 className='text-3xl'>
+        <Link href='/' className='text-3xl'>
             Clean<span className='font-bold'>Print</span>
-        </h1>
+        </Link>
         <div className='items-center justify-between hidden sm:flex'>
             <MenuList />
         </div>

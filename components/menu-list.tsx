@@ -62,10 +62,10 @@ const MenuList = () => {
               <ListItem href="/store" title="Tienda">
                 Accede a toda tu información , tus pedidos y mucho más.
               </ListItem>
-              <ListItem href="/offers" title="Ofertas">
+              <ListItem href="/" title="Ofertas">
                 Sección de ofertas y descuentos especiales.
               </ListItem>
-              <ListItem href="/accesorios" title="Accesorios">
+              <ListItem href="/" title="Accesorios">
                 Explora nuestra amplia gama de accesorios personalizados y únicos.
               </ListItem>
             </ul>
