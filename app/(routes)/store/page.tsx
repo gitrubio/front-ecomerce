@@ -2,7 +2,6 @@
 
 import useGetProducts from "@/api/useGetProducts";
 import { Separator } from "@/components/ui/separator";
-import { useSearchParams } from "next/navigation";
 import FiltersControlsCategory from "./components/filters-controls-category";
 import SkeletonSchema from "@/components/skeleton-schema";
 import ProductCard from "./components/product-card";
@@ -10,9 +9,9 @@ import { useState } from "react";
 import { ProductType } from "@/types/product";
 import { SearchBar } from "./components/product-search";
 
-export default function Page() {
-  const params = useSearchParams();
-  const category = params.get("category") || "todos";
+export default function Page({ searchParams }: { readonly searchParams: { [key: string]: string | string[] | undefined } }) {
+  
+  const category = searchParams.category|| "todos";
   const { result, loading, error } = useGetProducts();
   const [filterOrigin, setFilterOrigin] = useState(category);
   const [search, setSearch] = useState("");
