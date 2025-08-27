@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
     },
     {
       protocol: "https",
-      hostname: "mi-backend.com",
+      hostname: "clean-print-dashboard.onrender.com",
       pathname: "/uploads/**",
     },
   ],
