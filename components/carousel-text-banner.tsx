@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from 'next/navigation';
 import React from 'react'
 import { Carousel, CarouselContent, CarouselItem } from './ui/carousel';
 import { Card, CardContent } from './ui/card';
@@ -30,7 +29,6 @@ export const dataCarouselTop = [
 
 
 export default function CarouselTextBanner() {
-    const router = useRouter();
 
   return (
     <div className='bg-gray-200 darkL:bg-primary'>

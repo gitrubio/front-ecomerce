@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Bold, BotIcon, Expand, Home, Shapes, ShoppingCart } from "lucide-react";
+import { BotIcon, Expand, Home, Shapes, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 

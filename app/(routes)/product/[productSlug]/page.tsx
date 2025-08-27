@@ -4,10 +4,8 @@ import { useGetProductBySlug } from "@/api/getProductBySlug";
 import { ResponseType } from "@/types/response";
 import { useParams } from "next/navigation"
 import SkeletonProduct from "./components/skeleton-product";
-import CarouselProduct from "./components/carousel-product";
 import InfoProduct from "./components/info-product";
 import ProductNotFound from "@/components/shared/Prodcut-not-found";
-import ProductImageMinuature from "@/components/shared/product-image-miniature";
 import ProductGallery from "./components/product-gallery";
 
 
@@ -36,9 +34,6 @@ export default function Page() {
                     <InfoProduct product={result[0]} />
                 </div>
                 <div className="sm:px-12">
-                {/*    {result[0].images.map((item) =>(
-                    <ProductImageMinuature url={item.url} />
-                   ))} */}
                 </div>
             </div>
         </div>
