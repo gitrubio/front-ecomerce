@@ -37,7 +37,7 @@ export default function CarouselTextBanner() {
             stopOnInteraction: false,
         })]}>
           <CarouselContent>
-              {dataCarouselTop.map(({id,description,link ,title}) => (
+              {dataCarouselTop.map(({id,description,title}) => (
                 <CarouselItem key={id} className='cursor-pointer'>
                     <div>
                         <Card className='shadow-none border-none bg-transparent'>

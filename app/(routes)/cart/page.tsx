@@ -4,7 +4,6 @@ import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/formatPrice";
 import CartItem from "./components/cart-item";
-import { loadStripe } from "@stripe/stripe-js";
 import { makePaymentRequest } from "@/api/paymen";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";

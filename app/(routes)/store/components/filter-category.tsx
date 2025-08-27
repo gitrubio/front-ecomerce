@@ -11,7 +11,7 @@ type FiltersControlsCategoryProps = {
 
 
 export default function FilterCategory( {slug: slugFather, handleFilterChange}: FiltersControlsCategoryProps) {
-    const { result, loading, error } = useGetProductField();
+    const { result, loading } = useGetProductField();
 
   return (
     <div className='my-5'>
